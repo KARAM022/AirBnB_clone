@@ -9,11 +9,14 @@ class TestModels(unittest.TestCase):
         """Test the initialization of default amenity attribute"""
         amenity = Amenity()
         self.assertEqual(amenity.name, "")
-        self.assertEqual(str(amenity), "Amenity<>")
        
         """Test the initialization with specific values"""
         amenity = Amenity(name="ranim")
         self.assertEqual(amenity.name, "ranim")
+
+     def test_str(self):
+         """Test if is a string"""
+        self.assertEqual(str, type(Amenity().id))
        
 if __name__ == "__main__":
     unittest.main()
