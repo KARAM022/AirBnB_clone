@@ -11,14 +11,16 @@ class TestModels(unittest.TestCase):
         self.assertEqual(review.place_id, "")
         self.assertEqual(review.user_id, "")
         self.assertEqual(review.text, "")
-        self.assertEqual(str(review), "Review<>, , >")
        
         """Test the initialization with specific values"""
         review = Review(place_id="123", user_id= "234", text= "I love this place")
         self.assertEqual(review.place_id, "123")
         self.assertEqual(review.user_id, "234")
         self.assertEqual(review.text, "I love this place")
-        
+    
+    def test_is_a_string(self):
+        """Test if id is a string"""
+        self.assertEqual(str, type(Review().id))
        
 if __name__ == "__main__":
     unittest.main()

@@ -12,6 +12,7 @@ class Place(BaseModel):
                  latitude: float = 0.0, longitude: float = 0.0,
                  amenity_ids: list = []):
 
+        super().__init__()
         self.city_id = city_id
         self.user_id = user_id
         self.name = name

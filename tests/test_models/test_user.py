@@ -1,24 +1,28 @@
 #!/usr/bin/python3
 import unittest
-from models.review import Review
+from models.user import User
 
 class TestModels(unittest.TestCase):
-    """Tests cases for review class"""
+    """Tests cases for user class"""
     
-    def test_review(self):
-        """Test the initialization of default review attribute"""
-        review = Review()
-        self.assertEqual(review.place_id, "")
-        self.assertEqual(review.user_id, "")
-        self.assertEqual(review.text, "")
-        self.assertEqual(str(review), "Review<>, , >")
+    def test_user(self):
+        """Test the initialization of default user attribute"""
+        user = User()
+        self.assertEqual(user.email, "")
+        self.assertEqual(user.password, "")
+        self.assertEqual(user.first_name, "")
+        self.assertEqual(user.last_name, "")
        
         """Test the initialization with specific values"""
-        review = Review(place_id="123", user_id= "234", text= "I love this place")
-        self.assertEqual(review.place_id, "123")
-        self.assertEqual(review.user_id, "234")
-        self.assertEqual(review.text, "I love this place")
-        
-       
+        user = User(email="ranim@mail.com", password= "ranimeana", first_name= "jana", last_name="adroune")
+        self.assertEqual(user.email, "ranim@mail.com")
+        self.assertEqual(user.password, "ranimeana")
+        self.assertEqual(user.first_name, "jana")
+        self.assertEqual(user.last_name, "adroune")
+    
+    def test_is_a_string(self):
+        """Test if id is a string"""
+        self.assertEqual(str, type(User().id))          
+
 if __name__ == "__main__":
     unittest.main()

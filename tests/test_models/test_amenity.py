@@ -14,8 +14,8 @@ class TestModels(unittest.TestCase):
         amenity = Amenity(name="ranim")
         self.assertEqual(amenity.name, "ranim")
 
-     def test_str(self):
-         """Test if is a string"""
+    def test_is_a_string(self):
+        """Test if id is a string"""
         self.assertEqual(str, type(Amenity().id))
        
 if __name__ == "__main__":
