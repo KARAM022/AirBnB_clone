@@ -41,3 +41,4 @@ class BaseModel:
         var_dict['created_at'] = self.created_at.isoformat()
         var_dict['updated_at'] = self.updated_at.isoformat()
         return var_dict
+
