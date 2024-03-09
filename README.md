@@ -21,12 +21,12 @@
 
 <table>
     <tr>
-        <td>help</td>
-        <td>Displays available commands and their descriptions</td>
-    </tr>
-    <tr>
         <th>Command</th>
         <th>Description</th>
+    </tr>
+    <tr>
+        <td>help</td>
+        <td>Displays available commands and their descriptions</td>
     </tr>
     <tr>
         <td>create</td>
