@@ -19,4 +19,41 @@
 
 ### Available commands
 
-(........)
+<table>
+    <tr>
+        <td>help</td>
+        <td>Displays available commands and their descriptions</td>
+    </tr>
+    <tr>
+        <th>Command</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td>create</td>
+        <td>Creates a new instance of a specified class</td>
+    </tr>
+    <tr>
+        <td>show</td>
+        <td>Displays detailed information about a specific instance</td>
+    </tr>
+    <tr>
+        <td>destroy</td>
+        <td>Deletes a specific instance based on class name and ID</td>
+    </tr>
+    <tr>
+        <td>all</td>
+        <td>Displays information about all instances or all instances of a specific class</td>
+    </tr>
+    <tr>
+        <td>update</td>
+        <td>Modifies the attributes of an existing instance</td>
+    </tr>
+    <tr>
+        <td>quit</td>
+        <td>Exits the program gracefully</td>
+    </tr>
+    <tr>
+        <td>EOF</td>
+        <td>Exits the program (similar to quit)</td>
+    </tr>
+</table>
