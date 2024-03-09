@@ -57,3 +57,5 @@
         <td>Exits the program (similar to quit)</td>
     </tr>
 </table>
+
+© 2024 AirBnB Clone. Developed by <a href="https://github.com/Hissitissam">Tissam Hissi</a> and <a href="https://github.com/KARAM022">Karam Ouafik</a>.
