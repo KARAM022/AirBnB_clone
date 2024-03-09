@@ -12,13 +12,13 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 
+
 class TestModels(unittest.TestCase):
     """Tests cases for File storage file"""
-    
     def test_storage_initializes(self):
         """Testing initialisation"""
         self.assertEqual(type(models.storage), FileStorage)
-     
+
     def test_FileStorage_instan_with_no_args(self):
         """Testing instantiation without arguments"""
         self.assertEqual(type(FileStorage()), FileStorage)
@@ -27,18 +27,21 @@ class TestModels(unittest.TestCase):
         """Testing instantiation with arguments"""
         with self.assertRaises(TypeError):
             FileStorage(None)
-    
+
+
 class TestFileStorage_method(unittest.TestCase):
     """Unittests for testing methods of the FileStorage class."""
-    
     def test_all(self):
+        """CMNT"""
         self.assertEqual(dict, type(models.storage.all()))
-    
+
     def test_all_with_arg(self):
+        """CMNT"""
         with self.assertRaises(TypeError):
             models.storage.all(None)
-            
+
     def test_new(self):
+        """CMNT"""
         model = BaseModel()
         user = User()
         state = State()
@@ -67,8 +70,9 @@ class TestFileStorage_method(unittest.TestCase):
         self.assertIn(amenity, models.storage.all().values())
         self.assertIn("Review." + review.id, models.storage.all().keys())
         self.assertIn(review, models.storage.all().values())
-        
+
     def test_save(self):
+        """CMNT"""
         model = BaseModel()
         user = User()
         state = State()
@@ -94,8 +98,9 @@ class TestFileStorage_method(unittest.TestCase):
             self.assertIn("City." + city.id, save_text)
             self.assertIn("Amenity." + amenity.id, save_text)
             self.assertIn("Review." + review.id, save_text)
-    
+
     def test_reload(self):
+        """CMNT"""
         model = BaseModel()
         user = User()
         state = State()
@@ -120,7 +125,7 @@ class TestFileStorage_method(unittest.TestCase):
         self.assertIn("City." + city.id, obj)
         self.assertIn("Amenity." + amenity.id, obj)
         self.assertIn("Review." + review.id, obj)
-    
+
     @classmethod
     def setUpClass(cls):
         """Set up the test class."""
@@ -141,7 +146,7 @@ class TestFileStorage_method(unittest.TestCase):
         except IOError:
             pass
         FileStorage._FileStorage__objects = {}
-    
-    
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -12,7 +12,10 @@ class BaseModel:
             for key, value in kwargs.items():
                 if key != "__class__":
                     if key == "created_at" or key == "updated_at":
-                        setattr(self, key, datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f'))
+                        setattr(self,
+                                key,
+                                datetime.strptime(value,
+                                                  '%Y-%m-%dT%H:%M:%S.%f'))
                     else:
                         setattr(self, key, value)
         else:
@@ -23,7 +26,9 @@ class BaseModel:
 
     def __str__(self):
         """print: [<class name>] (<self.id>) <self.__dict__>"""
-        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+        return "[{}] ({}) {}".format(self.__class__.__name__,
+                                     self.id,
+                                     self.__dict__)
 
     def save(self):
         """update 'updated_at' with the current datetime"""
@@ -33,7 +38,7 @@ class BaseModel:
 
     def to_dict(self):
         """
-            returns a dictionary containing all keys/values 
+            returns a dictionary containing all keys/values
             of __dict__ of the instance
         """
         var_dict = self.__dict__.copy()
@@ -41,4 +46,3 @@ class BaseModel:
         var_dict['created_at'] = self.created_at.isoformat()
         var_dict['updated_at'] = self.updated_at.isoformat()
         return var_dict
-

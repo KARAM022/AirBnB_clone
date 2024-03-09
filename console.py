@@ -26,10 +26,10 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
         """noyhing"""
         pass
-    
+
     """edit pycode style"""
-    
     def do_create(self, name):
+        """CMNT"""
         name_check = name.split()
         if len(name_check) == 0:
             print("** class name missing **")
@@ -41,8 +41,9 @@ class HBNBCommand(cmd.Cmd):
             print(new_BaseModel.id)
         except ImportError:
             print("** class doesn't exist **")
-            
+
     def do_show(self, arg):
+        """CMNT"""
         args = arg.split()
         if len(args) == 0:
             print("** class name missing **")
@@ -52,15 +53,17 @@ class HBNBCommand(cmd.Cmd):
                 print("** instance id missing **")
                 return
             objs = storage.all()
-            obj = next((obj for obj in objs.values() if obj.id == args[1]), None)
+            obj = next((obj for obj in objs.values() if obj.id == args[1]),
+                       None)
             if obj is None:
                 print("** no instance found **")
                 return
             print(obj)
         except ImportError:
             print("** class doesn't exist **")
-            
+
     def do_destroy(self, arg):
+        """CMNT"""
         args = arg.split()
         if len(args) == 0:
             print("** class name missing **")
@@ -83,8 +86,9 @@ class HBNBCommand(cmd.Cmd):
             storage.save()
         except ImportError:
             print("** class doesn't exist **")
-            
+
     def do_all(self, arg):
+        """CMNT"""
         try:
             objs = storage.all()
             if arg == "":
@@ -98,9 +102,9 @@ class HBNBCommand(cmd.Cmd):
                 return
         except ImportError:
             print("** class doesn't exist **")
-            
-    
+
     def do_update(self, arg):
+        """CMNT"""
         args = arg.split()
         if len(args) == 0:
             print("** class name missing **")
@@ -129,7 +133,6 @@ class HBNBCommand(cmd.Cmd):
             storage.save()
         except ImportError:
             print("** class doesn't exist **")
-
 
 
 if __name__ == '__main__':

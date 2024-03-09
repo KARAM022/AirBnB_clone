@@ -11,4 +11,4 @@ class User(BaseModel):
         self.email = email
         self.password = password
         self.first_name = first_name
-        self.last_name = last_name 
+        self.last_name = last_name
