@@ -26,7 +26,11 @@
     </tr>
     <tr>
         <td>help</td>
-        <td>Displays available commands and their descriptions</td>
+        <td>Displays available commands</td>
+    </tr>
+    <tr>
+        <td>help < command ></td>
+        <td>Displays commands descriptions</td>
     </tr>
     <tr>
         <td>create</td>
