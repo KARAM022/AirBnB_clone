@@ -2,7 +2,8 @@
 """HBNBCommand class"""
 import cmd
 from models import storage
-# from models.base_model import BaseModel
+from models.base_model import BaseModel
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
@@ -28,33 +29,41 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     """edit pycode style"""
-    def do_create(self, name):
-        """CMNT"""
-        name_check = name.split()
+    def do_create(self, arg):
+        """Create a new instance of a class"""
+        name_check = arg.split()
         if len(name_check) == 0:
             print("** class name missing **")
             return
         try:
-            from models.base_model import BaseModel
-            new_BaseModel = BaseModel()
-            new_BaseModel.save()
-            print(new_BaseModel.id)
+            if name_check[0] not in ["User", "BaseModel"]:
+                print("** class doesn't exist **")
+                return
+            if name_check[0] == "User":
+                new_instance = User()
+            else:
+                new_instance = eval(name_check[0])()
+            new_instance.save()
+            print(new_instance.id)
         except ImportError:
             print("** class doesn't exist **")
 
     def do_show(self, arg):
-        """CMNT"""
+        """Show the specified instance"""
         args = arg.split()
         if len(args) == 0:
             print("** class name missing **")
             return
         try:
+            if args[0] not in ["User", "BaseModel"]:
+                print("** class doesn't exist **")
+                return
             if len(args) < 2:
                 print("** instance id missing **")
                 return
             objs = storage.all()
-            obj = next((obj for obj in objs.values() if obj.id == args[1]),
-                       None)
+            key = "{}.{}".format(args[0], args[1])
+            obj = objs.get(key)
             if obj is None:
                 print("** no instance found **")
                 return
@@ -63,14 +72,13 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_destroy(self, arg):
-        """CMNT"""
+        """Destroy the specified instance"""
         args = arg.split()
         if len(args) == 0:
             print("** class name missing **")
             return
         try:
-            from models import storage
-            if args[0] not in ["BaseModel"]:
+            if args[0] not in ["User", "BaseModel"]:
                 print("** class doesn't exist **")
                 return
             if len(args) < 2:
@@ -87,31 +95,14 @@ class HBNBCommand(cmd.Cmd):
         except ImportError:
             print("** class doesn't exist **")
 
-    def do_all(self, arg):
-        """CMNT"""
-        try:
-            objs = storage.all()
-            if arg == "":
-                print([str(obj) for obj in objs])
-                return
-            elif arg in ["BaseModel"]:
-                print([str(obj) for obj in objs])
-                return
-            else:
-                print("** class doesn't exist **")
-                return
-        except ImportError:
-            print("** class doesn't exist **")
-
     def do_update(self, arg):
-        """CMNT"""
+        """Update an instance based on the class name and id"""
         args = arg.split()
         if len(args) == 0:
             print("** class name missing **")
             return
         try:
-            from models import storage
-            if args[0] not in ["BaseModel"]:
+            if args[0] not in ["User", "BaseModel"]:
                 print("** class doesn't exist **")
                 return
             if len(args) < 2:
@@ -134,6 +125,21 @@ class HBNBCommand(cmd.Cmd):
         except ImportError:
             print("** class doesn't exist **")
 
+    def do_all(self, arg):
+        """Show all instances or instances of a specified class"""
+        try:
+            objs = storage.all()
+            if arg == "":
+                print([str(obj) for obj in objs.values() if type(obj).__name__ in ["User", "BaseModel"]])
+                return
+            elif arg in ["User", "BaseModel"]:
+                print([str(obj) for obj in objs.values() if type(obj).__name__ == arg])
+                return
+            else:
+                print("** class doesn't exist **")
+                return
+        except ImportError:
+            print("** class doesn't exist **")
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
