@@ -8,7 +8,6 @@ from models.user import User
 
 class HBNBCommand(cmd.Cmd):
     """The entry point of the command interpreter"""
-
     prompt = "(hbnb) "
 
     def do_quit(self, arg):
@@ -130,16 +129,19 @@ class HBNBCommand(cmd.Cmd):
         try:
             objs = storage.all()
             if arg == "":
-                print([str(obj) for obj in objs.values() if type(obj).__name__ in ["User", "BaseModel"]])
+                print([str(obj) for obj in objs.values()
+                       if type(obj).__name__ in ["User", "BaseModel"]])
                 return
             elif arg in ["User", "BaseModel"]:
-                print([str(obj) for obj in objs.values() if type(obj).__name__ == arg])
+                print([str(obj) for obj in objs.values()
+                       if type(obj).__name__ == arg])
                 return
             else:
                 print("** class doesn't exist **")
                 return
         except ImportError:
             print("** class doesn't exist **")
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
